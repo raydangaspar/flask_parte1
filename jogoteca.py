@@ -54,5 +54,12 @@ def autenticar():
         return redirect('/login')
 
 
+@app.route('/logout')
+def logout():
+    session['usuario_logado'] = None
+    flash('Nenhum usuário logado!')
+    return redirect('/')
+
+
 # debug ativo, significa que qualquer alteração salva, automaticamente da restart na aplocação
 app.run(debug=True)
