@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
@@ -34,8 +34,7 @@ def criar():
     console = request.form['console']
     jogo = Jogo(nome, categoria, console)
     lista.append(jogo)
-    return render_template('lista.html', titulo='jogos',
-                           jogos=lista)
+    return redirect('/')    # passar o caminho da rota
 
 
 # debug ativo, significa que qualquer alteração salva, automaticamente da restart na aplocação
