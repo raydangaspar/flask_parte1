@@ -5,8 +5,9 @@ app = Flask(__name__)
 
 @app.route('/inicio')
 def ola():
-    # return '<h1>Olá Flask</h1>'   # não é uma boa ideia colocar html explicitamente no código
-    return render_template('lista.html')
+    lista = ['Tetris', 'Super Mario', 'Pokemon Gold']
+    return render_template('lista.html', titulo='Jogos',
+                           jogos=lista)
 
 
 app.run()
