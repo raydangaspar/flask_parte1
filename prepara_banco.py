@@ -32,7 +32,8 @@ cursor.executemany(
       [
             ('luan', 'Luan Marques', 'flask'),
             ('nico', 'Nico', '7a1'),
-            ('danilo', 'Danilo', 'vegas')
+            ('danilo', 'Danilo', 'vegas'),
+            ('raydan', 'raydan', '1234')
       ])
 
 cursor.execute('select * from jogoteca.usuario')
