@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, flash, url_for
+from flask import Flask, render_template, request, redirect, session, flash, url_for, send_from_directory
 from models import Jogo, Usuario
 from dao import JogoDao, UsuarioDao
 from flask_mysqldb import MySQL
@@ -55,7 +55,8 @@ def editar(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('editar')))
     jogo = jogo_dao.busca_por_id(id)
-    return render_template('editar.html', titulo='Editando jogo', jogo=jogo)
+    capa_jogo = f'capa{id}.jpg'
+    return render_template('editar.html', titulo='Editando jogo', jogo=jogo, capa_jogo = capa_jogo)
 
 
 @app.route('/atualizar', methods=['POST',])
@@ -103,5 +104,8 @@ def logout():
     return redirect(url_for('index'))
 
 
+@app.route('/uploads/<nome_arquivo>')
+def imagem(nome_arquivo):
+    return send_from_directory('uploads', nome_arquivo)
 # debug ativo, significa que qualquer alteração salva, automaticamente da restart na aplocação
 app.run(debug=True)
